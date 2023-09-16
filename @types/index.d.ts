@@ -3,5 +3,5 @@ import { Request, Response } from "express";
 export type RoutesSchema = {
   path: string;
   method: string;
-  handler: (req: Request, res: Response) => Response<unknown>;
+  handler: (req: Request, res: Response) => void;
 };

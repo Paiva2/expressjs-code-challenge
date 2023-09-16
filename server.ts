@@ -1,9 +1,13 @@
 import express, { Express, Request, Response } from "express";
 import "dotenv/config";
 import routes from "./routes";
+import cors from "cors";
 
 const server: Express = express();
 const port = process.env.PORT;
+
+server.use(cors());
+server.use(express.json());
 
 routes.forEach((route) => {
   server[route.method as keyof typeof server](

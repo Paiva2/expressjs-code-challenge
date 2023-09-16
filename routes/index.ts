@@ -1,12 +1,15 @@
 import { Request, Response } from "express";
 import { RoutesSchema } from "../@types";
+import UserControllers from "../api/controllers/UserControllers";
+
+const userControllers = new UserControllers();
 
 const routes: RoutesSchema[] = [
   {
     path: "/new-user",
-    method: "get",
+    method: "post",
     handler: (req: Request, res: Response) => {
-      return res.status(200).send("Hello World!");
+      userControllers.submitNewUserToDatabase(req, res);
     },
   },
 ];
