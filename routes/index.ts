@@ -12,6 +12,14 @@ const routes: RoutesSchema[] = [
       userControllers.submitNewUserToDatabase(req, res);
     },
   },
+
+  {
+    path: "/user",
+    method: "get",
+    handler: (req: Request, res: Response) => {
+      userControllers.getUser(req, res);
+    },
+  },
 ];
 
 export default routes;

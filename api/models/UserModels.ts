@@ -1,10 +1,10 @@
 import prisma from "../../lib/prisma";
 
 class UserModels {
-  async checkIfUserExists(name: string) {
+  async checkIfUserExists(field: string, data: string) {
     const user = await prisma.user.findFirst({
       where: {
-        name,
+        [field]: data,
       },
     });
 

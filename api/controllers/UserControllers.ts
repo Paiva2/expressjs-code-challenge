@@ -11,7 +11,7 @@ class UserControllers {
       return res.status(404).send({ message: "Username is required." });
     }
 
-    const isUserRegistered = await userModels.checkIfUserExists(name);
+    const isUserRegistered = await userModels.checkIfUserExists("name", name);
 
     if (isUserRegistered) {
       return res.status(409).send({ message: "User is already registered." });
@@ -30,6 +30,25 @@ class UserControllers {
       if (error instanceof Error) {
         return res.status(409).send({ message: error.message });
       }
+    }
+  }
+
+  async getUser(req: Request, res: Response) {
+    const { sessionId } = req.cookies ?? "";
+
+    if (!sessionId) {
+      return res.status(404).send({ message: "User not found." });
+    }
+
+    const isUserRegistered = await userModels.checkIfUserExists(
+      "identificationToken",
+      sessionId
+    );
+
+    if (isUserRegistered) {
+      return res.status(200).send({ data: isUserRegistered });
+    } else {
+      return res.status(404).send({ message: "User not found." });
     }
   }
 }
