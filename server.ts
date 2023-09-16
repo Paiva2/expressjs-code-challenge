@@ -1,15 +1,21 @@
-import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv';
+import express, { Express, Request, Response } from "express";
+import "dotenv/config";
+import routes from "./routes";
 
-dotenv.config();
-
-const app: Express = express();
+const server: Express = express();
 const port = process.env.PORT;
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('hello world');
+routes.forEach((route) => {
+  server[route.method as keyof typeof server](
+    route.path,
+    (req: Request, res: Response) => {
+      route.handler(req, res);
+    }
+  );
 });
 
-app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running`);
+server.listen(port, () => {
+  console.log(`[server]: Server is running ⚡️`);
 });
+
+export default server;
