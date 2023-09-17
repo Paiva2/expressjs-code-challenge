@@ -12,11 +12,12 @@ model User {
   identificationToken String   @unique @default(uuid())
   name                String   @unique
   created_at          DateTime @default(now())
-  posts               Meals[]
+  meals               Meals[]
 }
 
 model Meals {
   id               Int      @id @default(autoincrement())
+  name             String
   description      String
   dateTime         DateTime @default(now())
   isThisMealOnDiet Boolean
