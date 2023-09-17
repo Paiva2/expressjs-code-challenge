@@ -25,9 +25,41 @@ const routes: RoutesSchema[] = [
 
   {
     path: "/meals",
+    method: "get",
+    handler: (req: Request, res: Response) => {
+      mealController.getAllUserMeals(req, res);
+    },
+  },
+
+  {
+    path: "/meals/:mealId",
+    method: "get",
+    handler: (req: Request, res: Response) => {
+      mealController.getMealByParam(req, res);
+    },
+  },
+
+  {
+    path: "/meals/:mealId",
+    method: "delete",
+    handler: (req: Request, res: Response) => {
+      mealController.removeMealFromDatabase(req, res);
+    },
+  },
+
+  {
+    path: "/meals",
     method: "post",
     handler: (req: Request, res: Response) => {
       mealController.submitNewMealToDatabase(req, res);
+    },
+  },
+
+  {
+    path: "/meals/:mealId",
+    method: "patch",
+    handler: (req: Request, res: Response) => {
+      mealController.submitUpdatedMealToDatabase(req, res);
     },
   },
 ];
