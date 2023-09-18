@@ -8,11 +8,13 @@ datasource db {
 }
 
 model User {
-  id                  Int      @id @default(autoincrement())
-  identificationToken String   @unique @default(uuid())
-  name                String   @unique
-  created_at          DateTime @default(now())
-  meals               Meals[]
+  id                   Int      @id @default(autoincrement())
+  identificationToken  String   @unique @default(uuid())
+  name                 String   @unique
+  created_at           DateTime @default(now())
+  mealOnDietStrike     Int      @default(0)
+  bestMealOnDietStrike Int?     @default(0)
+  meals                Meals[]
 }
 
 model Meals {

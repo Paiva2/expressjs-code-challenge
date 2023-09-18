@@ -23,3 +23,18 @@ type UpdateMealSchema = {
   updatedMeal: Meal;
   sessionId: string;
 };
+
+interface UserSchema {
+  id: number;
+  identificationToken: string;
+  name: string;
+  created_at: Date;
+  meals: {
+    id: number;
+    name: string;
+    description: string;
+    dateTime: string;
+    isThisMealOnDiet: boolean;
+    userId?: string | null;
+  }[];
+}

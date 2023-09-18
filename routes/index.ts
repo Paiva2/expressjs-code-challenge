@@ -62,6 +62,14 @@ const routes: RoutesSchema[] = [
       mealController.submitUpdatedMealToDatabase(req, res);
     },
   },
+
+  {
+    path: "/user/:username",
+    method: "get",
+    handler: (req: Request, res: Response) => {
+      userControllers.userDashboard(req, res);
+    },
+  },
 ];
 
 export default routes;
